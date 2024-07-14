@@ -4,7 +4,7 @@ project(2d_platformer_life)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(2d_platformer_life
-        main.cpp
+        src/main.cpp
 )
 
 ############# SFML #############

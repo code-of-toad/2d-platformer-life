@@ -1,11 +1,16 @@
 #include <SFML/Graphics.hpp>
-#include "GLOBALS.hpp"
+#include "InputManager.hpp"
+
+// bool DEBUG = true;
+bool DEBUG = false;
 
 int main() {
     // WINDOW SETUP
     // ------------
     sf::RenderWindow window(sf::VideoMode(SCREEN_W, SCREEN_H), "2D Platformer Life");
     window.setFramerateLimit(FPS);
+
+    unordered_map<string, bool>& keyState = InputManager::getKeyState();
 
     sf::Event event{};
     sf::Clock clock;
@@ -21,40 +26,44 @@ int main() {
                     window.close();
                     return EXIT_SUCCESS;
                 // KEYBOARD INPUT: Pressed
-                // -----------------------
                 case sf::Event::KeyPressed:
                     switch (event.key.code) {
                         case sf::Keyboard::Left:
-                            cout << "KEY_PRESSED: Left" << endl;
+                            keyState["Left" ] = true;
                             break;
                         case sf::Keyboard::Right:
-                            cout << "KEY_PRESSED: Right" << endl;
+                            keyState["Right"] = true;
                             break;
                         case sf::Keyboard::Up:
-                            cout << "KEY_PRESSED: Up" << endl;
+                            keyState["Up"   ] = true;
                             break;
                         case sf::Keyboard::Down:
-                            cout << "KEY_PRESSED: Down" << endl;
+                            keyState["Down" ] = true;
+                            break;
+                        case sf::Keyboard::Escape:
+                            keyState["Esc"  ] = true;
                             break;
                         default:
                             break;
                     }
                     break;
                 // KEYBOARD INPUT: Released
-                // ------------------------
                 case sf::Event::KeyReleased:
                     switch (event.key.code) {
                         case sf::Keyboard::Left:
-                            cout << "KEY_RELEASED: Left" << endl;
+                            keyState["Left" ] = false;
                             break;
                         case sf::Keyboard::Right:
-                            cout << "KEY_RELEASED: Right" << endl;
+                            keyState["Right"] = false;
                             break;
                         case sf::Keyboard::Up:
-                            cout << "KEY_RELEASED: Up" << endl;
+                            keyState["Up"   ] = false;
                             break;
                         case sf::Keyboard::Down:
-                            cout << "KEY_RELEASED: Down" << endl;
+                            keyState["Down" ] = false;
+                            break;
+                        case sf::Keyboard::Escape:
+                            keyState["Esc"  ] = false;
                             break;
                         default:
                             break;
@@ -64,8 +73,23 @@ int main() {
                     break;
             }
         }
+
         // UPDATE & GAME LOGIC
         // -------------------
+        if (DEBUG) {  // DEBUGGGGGGGGGGGGGGGGGG
+            cout << "Keys Pressed: ";
+            for (const auto& key : keyState) {
+                if (key.second) {
+                    cout << key.first << " ";
+                }
+            } cout << endl;
+        }
+
+        if (keyState["Esc"]) {
+            window.close();
+            return EXIT_SUCCESS;
+        }
+
         // RENDER DISPLAY
         // --------------
         window.clear();

@@ -5,6 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(2d_platformer_life
         src/main.cpp
+        src/GLOBALS.hpp
+        src/testing.cpp
+        src/InputManager.cpp
+        src/InputManager.hpp
 )
 
 ############# SFML #############

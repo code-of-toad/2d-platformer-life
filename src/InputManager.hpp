@@ -3,7 +3,7 @@
 #include "GLOBALS.hpp"
 
 class InputManager {
-    static unordered_map<string, bool> _keyState;  // STATIC INIT (see .cpp)
+    static unordered_map<string, bool> _keyStates;  // STATIC INIT (see .cpp)
 public:
     InputManager()  = default;
     ~InputManager() = default;

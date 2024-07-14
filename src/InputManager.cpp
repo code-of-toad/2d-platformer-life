@@ -1,7 +1,7 @@
 #include "InputManager.hpp"
 
 // STATIC INIT
-unordered_map<string, bool> InputManager::_keyState = [] {
+unordered_map<string, bool> InputManager::_keyStates = [] {
     unordered_map<string, bool> m;
     m["Left" ] = false;
     m["Right"] = false;
@@ -14,5 +14,5 @@ unordered_map<string, bool> InputManager::_keyState = [] {
 } ();
 
 unordered_map<string, bool>& InputManager::getKeyState() {
-    return _keyState;
+    return _keyStates;
 }

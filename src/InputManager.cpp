@@ -13,6 +13,6 @@ unordered_map<string, bool> InputManager::_keyStates = [] {
     return m;
 } ();
 
-unordered_map<string, bool>& InputManager::getKeyState() {
+unordered_map<string, bool>& InputManager::getKeyStates() {
     return _keyStates;
 }

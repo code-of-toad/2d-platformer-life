@@ -7,5 +7,5 @@ class InputManager {
 public:
     InputManager()  = default;
     ~InputManager() = default;
-    [[nodiscard]] static unordered_map<string, bool>& getKeyState();
+    [[nodiscard]] static unordered_map<string, bool>& getKeyStates();
 };

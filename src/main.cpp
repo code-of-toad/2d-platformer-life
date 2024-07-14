@@ -2,7 +2,7 @@
 #include "InputManager.hpp"
 
 // bool DEBUG = true;
-bool DEBUG = false;
+bool DEBUG = true;
 
 int main() {
     // WINDOW SETUP
@@ -10,7 +10,8 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(SCREEN_W, SCREEN_H), "2D Platformer Life");
     window.setFramerateLimit(FPS);
 
-    unordered_map<string, bool>& keyState = InputManager::getKeyState();
+    unordered_map<string, bool>&
+        keyState = InputManager::getKeyStates();
 
     sf::Event event{};
     sf::Clock clock;
